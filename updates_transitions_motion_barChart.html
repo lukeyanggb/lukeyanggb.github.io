@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
+    </head>
+    <body>
+        <p>Click on this text to update the chart with new data values
+            as many times as you like!</p>
+        <script type="text/javascript">
+
+            
+            // Making a Bar Chart
+            var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+                            11, 12, 15, 20, 18, 17, 16, 18, 23, 25];
+            //Width and height
+            var w = 600;
+            var h = 250;
+            // create a svg
+            var svg = d3.select('body')
+                        .append('svg')
+                        .attr('width', w)
+                        .attr('height', h);
+            // create scales for X and Y axis and set their ranges
+            // Ordinal Scales, Ordinal scales are typically used for ordinal data, 
+            // usually categories with some inherent order to them
+            var xScale = d3.scaleBand()  // Ordinal Scales
+                            .domain(d3.range(dataset.length))   
+                            // d3.range(): simple way to quickly generate an array of sequential numbers
+                            .range([0, w])
+                            .round(true)    // enable rounding, output values to the nearest whole pixel
+                            .paddingInner(0.05) // specify a bit of spacing
+
+            var yScale = d3.scaleLinear()
+							.domain([0, d3.max(dataset)])
+                            .range([0, h]);
+                            
+            // generate rects
+            svg.selectAll('rect')
+                .data(dataset)
+                .enter()
+                .append('rect')
+                .attr('x', function(d, i){
+                    return xScale(i);
+                })
+                .attr('y', function(d){
+                    return h-yScale(d);
+                })
+                .attr('width', xScale.bandwidth()) // band scale calculates it for us
+                .attr('height', function(d){
+                    return yScale(d);
+                })
+                .attr('fill', function(d){
+                    return 'rgb(0,0,' + Math.round(d*10) + ')';
+                });
+
+            // Labels
+            svg.selectAll('text')
+                .data(dataset)
+                .enter()
+                .append('text')
+                .text(function(d){
+                    return d;
+                })
+                .attr('x', function (d, i) {
+                    return xScale(i)+xScale.bandwidth()/2;
+                })
+                .attr('y', function (d, i) {
+					if (d > 1) {
+						return h - yScale(d) + 14;
+					} else {
+						return h - yScale(d) - 4;
+					}
+                })
+                .attr('font-family', 'sans-serif')
+                .attr('font-size', '11px')
+                .attr("fill", function(d){
+					if (d > 1) {
+						return "white";
+					} else {
+						return "black";
+				}})
+                .attr('text-anchor', 'middle')  // center the text horizontally at the assigned x value
+                ;
+
+            // Interaction via Event Listeners
+            // D3’s on() method provides a nice shorthand for adding event listeners. 
+            // As you can see, on() takes two arguments: the event type ("click") and the listener itself (the anonymous function).
+            // d3.select('p')
+            //     .on('click', function(){
+            //         // Do something mundane and annoying on click
+            //         alert("Hey, don't click that!");
+            //     })
+            
+            // Changing the Data
+            // On click, update with new data
+            d3.select('p')
+                .on('click', function(){
+                // // simply update dataset by overwriting its original values
+                // dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
+                //         5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+                // Randomizing the Data
+                var numValues = dataset.length; //Count original length of dataset
+                dataset = [];
+                for (let i = 0; i < numValues; i++) {
+                    var element = Math.floor(Math.random()*25); //New random integer (0-24)
+                    dataset.push(element);
+                }
+
+                svg.selectAll("rect")
+                    .data(dataset)     // New data successfully bound!
+                    .transition()    // Making a nice, super smooth, animated transition
+                    .delay(function(d, i){  // generate staggered delays
+                        return i / dataset.length * 1000;   // each subsequent element will be delayed 100 ms more than the preceding element.
+                    })
+                    .duration(500)     // if you want the transition time as 1 s.
+                    // .ease(d3.easeLinear)  // specify different kinds of easing by using ease().
+                    .attr('y', function(d){   // Updating the Visuals
+                        return h-yScale(d);
+                    })
+                    .attr('height', function(d){
+                        return yScale(d);
+                    })
+                    .attr('fill', function(d){
+                    return 'rgb(0,0,' + Math.round(d*10) + ')';
+                    });
+                
+                // Labels
+                svg.selectAll('text')
+                    .data(dataset)
+                    .text(function(d){
+                        return d;
+                    })
+                    .transition() 
+                    .delay(function(d, i){ 
+                        return i / dataset.length * 1000;
+                    })
+                    .duration(500)
+                    .attr('x', function (d, i) {
+                        return xScale(i)+xScale.bandwidth()/2;
+                    })
+                    .attr('y', function (d, i) {
+                        if (d > 1) {
+						    return h - yScale(d) + 14;
+					    } else {
+						return h - yScale(d) - 4;
+					    }
+                    })
+                    .attr("fill", function(d){
+					if (d > 1) {
+						return "white";
+					} else {
+						return "black";
+					}});
+                })
+
+            
+        </script>
+
+    </body>
+</html>
