@@ -5,3 +5,8 @@ div.bar {
     margin-right: 2px;    
     background-color: teal;
 }
+
+p {
+    color: crimson;
+    font-size: 36px;
+}
