@@ -1,0 +1,35 @@
+.line {
+    fill: none;
+    stroke-width: 1;
+}
+
+.seriesLabel {
+    font-family: Sans-serif;
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+.axisLabel {
+    font-family: Sans-serif;
+    font-size: 16px;
+}
+
+.title {
+    font-family: Sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bar {
+    fill: lightblue;
+}
+
+.grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+
+.grid path {
+    stroke-width: 0;
+}
