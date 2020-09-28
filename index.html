@@ -1,13 +1,22 @@
 <!DOCTYPE html>
+<meta charset="utf-8">
 <head>
-  <title>Games Rating: 2015 - 2019</title>
-  <meta charset="utf-8">
-  <script type="text/javascript" src="lib/d3.v5.min.js"></script>
-  <script type="text/javascript" src="lib/d3-dsv.min.js"></script>
-  <link rel="stylesheet" href="interactive.css">
+    <title>Choropleth Map</title>
+    <script type="text/javascript" src="lib/d3.v5.min.js"></script>
+    <script type="text/javascript" src="lib/topojson.v2.min.js"></script>	
+    <script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>	
+    <script type="text/javascript" src="lib/d3-legend.min.js"></script>	
+    <script type="text/javascript" src="lib/d3-tip.min.js"></script>	
+    <link rel="stylesheet" href="choropleth.css">
 </head>
-
 <body>
-  <div id="container"></div>
+    <!-- Add heading for the visualization -->
+	<h2>Average Ratings of Board Games Across the World</h2>
+	<!-- Dropdown -->
+    <label class="dropDownLabel">Select Board Game:</label>
+    <select id="selectGames"></select>
+	<!-- append visualization svg to this div-->
+    <div id="choropleth"></div>
 </body>
-<script src="interactive.js"></script>
+<script src="choropleth.js"></script>
+</html>
