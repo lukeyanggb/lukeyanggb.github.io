@@ -1,3 +1,170 @@
+// define margin and dimensions for svg
+const w = 900;
+const h = 600;
+const margin = 40;
+
+// create svg
+var svg = d3.select("#substance-use-disorder")
+            .append('svg')
+            .attr('width', w)
+            .attr('height', h);
+
+// create color scheme
+var colorScheme = d3.schemeReds[4];
+colorScheme.unshift("#eee");
+
+// define projection and path required for Choropleth
+var path = d3.geoPath();
+var projection = d3.geoNaturalEarth()
+                    .scale(w/2 / Math.PI)
+                    .translate([w/2, h/2])
+var path = d3.geoPath()
+                .projection(projection);
+
+// load the topo data and drug data
+Promise.all([d3.json("world_countries.json"), d3.csv("prevalence_of_substance_use_disorders.csv")])
+        .then(function(v) {
+            world =v[0];
+            data = v[1];
+            try {
+            ready(world, data)
+            }
+            catch(err) {
+            console.log(err)
+            }
+        });
+
+// run ready function when data is loaded successfully
+function ready(world, data) {
+    // extract all years
+    data = d3.nest()
+    .key(function(d) { return d.Year})
+    .rollup(function(v) {
+        return v.map(function(d) {
+            return {
+                country: d.Country,
+                code: d.Code,
+                value: d.Value
+            };
+        });
+    })
+    .entries(data);
+    // country names
+    var countryNames = [];
+    data.forEach(function(d) {
+    countryNames.push(d.key)
+    });
+
+    // append the year options to the dropdown
+    // add the options to the button
+    d3.select("#selectYear")
+    .selectAll('myOptions')
+    .data(countryNames)
+    .enter()
+    .append('option')
+    .text(function (d) { return d; }) // text showed in the menu
+    .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+    // event listener for the dropdown. Update choropleth and legend when selection changes. Call createMapAndLegend() with required arguments.
+    d3.select("#selectYear")
+    .on("change", function(d) {
+    // recover the option that has been chosen
+    var selectedYear = d3.select(this).property("value");
+    // run the updateChart function with this selected option
+    createMapAndLegend(world, data, selectedYear);
+    })
+
+    // create Choropleth with default option. Call createMapAndLegend() with required arguments.
+    var selectedYear = data[26].key
+    createMapAndLegend(world, data, selectedYear);
+
+    console.log(data);
+};
+
+// this function should create a Choropleth and legend using the world and data arguments for a selectedYear
+// also use this function to update Choropleth and legend when a different year is selected from the dropdown
+function createMapAndLegend(world, data, selectedYear){ 
+    // extract the selected year data object from data
+    for (let i = 0; i < data.length; i++) {
+    if (data[i].key == selectedYear) {
+        var selectedYearData = {};
+        var tooltipCountry = {}; // show country data in tooltip
+        data[i].value.forEach(function(item) {
+            var key = item.country;
+            selectedYearData[key] = parseFloat(item.value);  //assign the key and value to output obj
+            tooltipCountry[key] = {
+                year: data[i].key,
+                value: item.value,
+            };
+        });
+    }
+    };
+
+    // define tooltip
+    var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, -10])
+            .html(function(d) {
+                if (tooltipCountry[d.properties.name]) {    // if country data is available
+                    return "Country: <span style='color:white'><strong>" + d.properties.name + "</strong></span>" + 
+                "<p><\p>Year:<span style='color:white'><strong>" + tooltipCountry[d.properties.name].year + "</strong></span>" + 
+                "<p><\p>Population with substance use disorder: <span style='color:white'><strong>" + tooltipCountry[d.properties.name].value + "% </strong></span>";
+                }
+            });
+    svg.call(tip);
+
+    // create color scale
+    var colorScale = d3.scaleThreshold()
+    .domain([0, 1, 2, 3, 4, 5, 6, 7, 8])
+    .range(d3.schemeBlues[8]);
+
+    // draw the map
+    svg.append("g")
+    .attr("class", "countries")
+    .selectAll("path")
+    .data(world.features)
+    .enter()
+    .append("path")
+    .attr("fill", function (d){
+        // Pull data for this country
+        d.value = selectedYearData[d.properties.name] || 0;
+        // Set the color
+        return colorScale(d.value);
+    })
+    .attr("d", path)
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
+
+
+
+    // add legend
+    var g = svg.append("g")
+            .attr("class", "legendThreshold")
+            .attr("transform", "translate(20,100)");
+    g.append("text")
+    .attr("class", "label")
+    .attr("x", 0)
+    .attr("y", -margin/2)
+    .text("Population with substance use disorder:");
+
+    // labels for legends
+    var labels = ["no data", "0%","1%", "2%", "4%", "5%", "6%", "7%"];
+
+    var legend = d3.legendColor()
+    .labels(function (data) { return labels[data.i]; })
+    .shapePadding(8)
+    .scale(colorScale);
+    svg.select(".legendThreshold")
+    .call(legend);
+    
+    let caption = svg.append('text')
+    .attr('class', 'caption')
+    .attr('x', w)
+    .attr('y', h-margin)
+    .style('text-anchor', 'end')
+    .html('Source: Institute for Health Metrics and Evaluation (IHME)');
+};
+
 // create 2 data_set
 var mentalDataUS = [
     {group: "Anxiety disorders", value: 6.64},
@@ -96,7 +263,7 @@ function update(data) {
         .on("mouseover", function() {
         //Get this bar's x/y values, then augment for the tooltip
         var xPosition = parseFloat(d3.select(this).attr("x")) + x.bandwidth()/4;
-        var yPosition = parseFloat(d3.select(this).attr("y"))+100;
+        var yPosition = parseFloat(d3.select(this).attr("y"))+ h + margin + 220; // yPosition needs to be fixed
         //Update the tooltip position and value
         d3.select("#tooltip")
             .style("left", xPosition + "px")

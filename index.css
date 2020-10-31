@@ -1,3 +1,107 @@
+.countries {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+}
+
+.legendThreshold {
+      font-size: 14px;
+      font-family: sans-serif;
+}
+
+.caption {
+      fill: #000;
+      text-anchor: start;
+      font-weight: bold;
+}
+
+.dropDownLabel{
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+h2 {
+    font-family: Sans-serif;    
+}
+
+.d3-tip {
+    font-family: Sans-serif;
+    font-size: 14px;
+    line-height: 0.8;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+
+text{
+    font-size: 16px;
+    font-family: Open Sans, sans-serif;
+}
+text.title{
+font-size: 24px;
+font-weight: 500;
+}
+text.subTitle{
+    font-weight: 500;
+    fill: #777777;
+}
+text.caption{
+    font-weight: 400;
+    font-size: 14px;
+    fill: #777777;
+}
+text.label{
+    font-weight: 400;
+}
+
+text.valueLabel{
+    font-weight: 300;
+}
+
+text.yearText{
+    font-size: 64px;
+    font-weight: 700;
+    opacity: 0.25;
+}
+/* .tick text {
+    fill: #777777;
+}
+.xAxis .tick:nth-child(2) text {
+    text-anchor: start;
+} */
+/* .tick line {
+    shape-rendering: CrispEdges;
+    stroke: #dddddd;
+} */
+/* .tick line.origin{
+    stroke: #aaaaaa;
+} */
+/* path.domain{
+    display: none;
+} */
+
 .myXaxis {
     font-size: 18px;
     font-family: sans-serif;
