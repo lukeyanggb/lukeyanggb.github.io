@@ -113,7 +113,7 @@ text.yearText{
 }
 
 rect:hover {
-    fill: orange;
+    fill: #fec44f;
 }
 
 #tooltip {
