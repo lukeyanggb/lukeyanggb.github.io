@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<head>
-    <title>Choropleth Map</title>
-    <script type="text/javascript" src="lib/d3.v5.min.js"></script>
-    <script type="text/javascript" src="lib/topojson.v2.min.js"></script>	
-    <script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>	
-    <script type="text/javascript" src="lib/d3-legend.min.js"></script>	
-    <script type="text/javascript" src="lib/d3-tip.min.js"></script>	
-    <link rel="stylesheet" href="choropleth.css">
-</head>
-<body>
-    <!-- Add heading for the visualization -->
-	<h2>Average Ratings of Board Games Across the World</h2>
-	<!-- Dropdown -->
-    <label class="dropDownLabel">Select Board Game:</label>
-    <select id="selectGames"></select>
-	<!-- append visualization svg to this div-->
-    <div id="choropleth"></div>
-</body>
-<script src="choropleth.js"></script>
-</html>
+<link rel="stylesheet" href="index.css">
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<!-- Add heading for the visualization -->
+<h2>Prevalence by mental disorder（2017）</h2>
+<!-- Add 2 buttons -->
+<a href="#" class="myButton" onclick="update(mentalDataUS)">United States</a>
+<a href="#" class="myButton" onclick="update(mentalDataWorld)">World</a>
+<!-- Create a div where the graph will take place -->
+<div id="mental_health">
+    <div id="tooltip" class="hidden">
+        <p><strong>Share of the total population: <span id="value">100</span>%</strong></p>
+    </div>
+</div>
+<script src='index.js'></script>
