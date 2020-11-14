@@ -1,18 +1,18 @@
 // enter code to define margin and dimensions for svg
 const margin = {
-        top: 100,
-        right: 50,
-        bottom: 50,
-        left: 50
+        top: 30,
+        right: 30,
+        bottom: 30,
+        left: 30
     },
 
-width = window.clientWidth - margin.left - margin.right,
+width = 700 - margin.left - margin.right,
 //height = window.innerHeight - margin.top - margin.bottom;
-height = 500
+height = 400
 
 var playButton = d3.select("#play-button");
 var moving = false;
-var targetValue = 800;
+var targetValue = 600;
 var currentValue = 0;
 
 var formatDateIntoYear = d3.timeFormat("%Y");
@@ -29,13 +29,13 @@ var startDate = new Date("1996-01-01"),
     
 // enter code to create svg
 const svg = d3.select("#choropleth").append("svg")
-.attr("width", width)
-.attr("height", height);
+    .attr("width", width)
+    .attr("height", height);
 
 // enter code to create svg for legends    
 const svg2 = d3.select("#lengends").append("svg")
-    .attr("width", 1000)
-    .attr("height", 130);      
+    .attr("width", 700)
+    .attr("height", 150);      
 
 var x = d3.scaleTime()
     .domain([startDate, endDate])
@@ -44,7 +44,7 @@ var x = d3.scaleTime()
 
 var slider = svg2.append("g")
     .attr("class", "slider")
-    .attr("transform", "translate(" + margin.left + "," + height/5 + ")");
+    .attr("transform", "translate(" + margin.left + "," + height/4 + ")");
 
 slider.append("line")
     .attr("class", "track")
@@ -96,8 +96,9 @@ const tip = d3.tip().attr("class", "d3-tip")
 
 // enter code to define projection and path required for Choropleth
 const projection = d3.geoAlbersUsa()
-                    .scale([1050]); 
-                    // .translate([width /2  , height /2]) translate to center of screen
+                    .scale([600])
+                    .translate([width /2  , height /2]) 
+                    // translate to center of screen
 
 var path = d3.geoPath() // path generator that will convert GeoJSON to SVG paths
                 .projection(projection);

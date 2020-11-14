@@ -1,0 +1,26 @@
+.rect-correlation.selected {
+    stroke: #000;
+    stroke-width: 2px;
+}
+
+.axis.correlation .domain {
+    display: none;
+}
+
+.axis.correlation .tick text.selected {
+    font-weight: bold;
+    fill: steelblue;
+}
+
+.axis.correlation .tick line.selected {
+    stroke: steelblue;
+}
+
+.correlation-tip {
+    line-height: 1.2;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    border-radius: 5px;
+    pointer-events: none;
+}

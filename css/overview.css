@@ -63,3 +63,37 @@ Reference: http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
     font-size: 16px;
     line-height: 20px;
   }
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #dcdcdc;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+#marijuana-history .ticks {
+  font-size: 12px;
+}
+
+#marijuana-history .countries {
+  fill: grey;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
