@@ -1,31 +1,192 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<link rel="stylesheet" href="index.css">
-<!-- Load d3.js -->
-<script type="text/javascript" src="lib/d3.v5.min.js"></script>
-<script type="text/javascript" src="lib/topojson.v2.min.js"></script>	
-<script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>	
-<script type="text/javascript" src="lib/d3-legend.min.js"></script>	
-<script type="text/javascript" src="lib/d3-tip.min.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Jian Wang, Yang Lu, Jing Ren, Muzi Bi, Fangxia Tian, Yutong Wu">
+    <title>CSE 6242 Team 47 Project: Marajuana Study</title>
 
-<h1 class="mdc-typography--headline3">Overview</h1>
-<!-- Add heading for the visualization -->
-<h2>Prevalence by substance use disorders</h2>
-<!-- Dropdown -->
-<label class="dropDownLabel">Select Year (1990 ~ 2016):</label>
-<select id="selectYear"></select>
-<!-- append visualization svg to this div-->
-<div id="substance-use-disorder"></div>
+    <!-- Bootstrap core CSS --> 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/overview.css" rel="stylesheet">
+    <link href="css/mj.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-<!-- Add heading for the visualization -->
-<h2>Prevalence by mental disorder (2017）</h2>
-<!-- Add 2 buttons -->
-<a href="javascript:void();" class="myButton" onclick="update(mentalDataUS)">United States</a>
-<a href="javascript:void();" class="myButton" onclick="update(mentalDataWorld)">World</a>
-<!-- Create a div where the graph will take place -->
-<div id="mental_health">
-    <div id="tooltip" class="hidden">
-        <p><strong>Share of the total population: <span id="value">100</span>%</strong></p>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic">Effects of Marijuana</h1>
     </div>
+    <p class="lead my-3">The legalization of marijuana has been studied in various aspects, Marijuana can be beneficial to
+      health and stimulate the brain with euphoric feeling. Nonetheless, it might lead to other illicit drug
+      use. More analyses regarding health risks of marijuana are required. To help stakeholders better
+      manage and understand marijuana legalization, it is necessary to illustrate the subject in a more direct
+      and accessible manner. Also, detailed evaluations on the impact of marijuana, such as substance use
+      and mental health status, are essential.</p>
+    <p class="lead mb-0"><a href="https://www.github.com" class="text-white font-weight-bold">Link to our full report...</a></p>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary"> Analysis</strong>
+          <h3 class="mb-0">Marijuana Overview</h3>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Prediction</strong>
+          <h3 class="mb-0">Machine Learning</h3>
+          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<script src='index.js'></script>
+
+<main role="main" class="container">
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-5">
+            <h2 class="featurette-heading">Marijuana Legalization History, 1996 - 2020</h2>
+            <div>
+              <p class="lead">
+              PLACEHOLDER: Every seventh death in the world (13%) was the result of direct smoking in 2017; a further 2% was the result of secondhand smoke. This means 15% – close to 1-in-6 deaths was the result of tobacco.
+              <br>
+              <br>
+              PLACEHOLDER: In the map here we see the share of deaths attributed to direct smoking across the world. In some countries this share was even greater than 13%.
+              <br>
+              <br>
+              PLACEHOLDER: There were several countries in 2017 where more than 1-in-5 deaths resulted from smoking, including China, Denmark, the Netherlands, Greece, Bosnia and Herzegovina, and Greenland.
+              <br>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id="vis">
+              <div id="choropleth"></div>
+              <div id="lengends">
+                <div>Source: National Confernce of State Legislatures</div>
+              </div>
+              <div> <button id="play-button" class="btn btn btn-outline-secondary">Play</button></div>
+            </div>
+          </div>
+        </div>
+  
+        <hr class="featurette-divider">
+  
+        <div class="row featurette">
+          <div class="col-md-5">
+            <h2 class="featurette-heading">Prevalence by substance use disorders, 1990 - 2016</h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+              <!-- drug use disorder (dD) -->
+              <div id="dD_Viz">
+                <label class="dropDownLabel">Select Year (1990 ~ 2016):</label>
+                <select id="dD_selectYear"></select>
+                <!-- append visualization svg to this div-->
+                <div id="dD_svg"></div>
+              </div>
+          </div>
+        </div>
+  
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-5">
+            <h2 class="featurette-heading">Prevalence by mental disorder (2017)</h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-7">
+            <!-- mental disorder (mD) -->
+            <div id="mD_Viz">
+              <!-- Add 2 buttons -->
+              <div><button id="mD_US_button" class="btn btn btn-outline-secondary">United States</button> <button id="mD_world_button" class="btn btn btn-outline-secondary">World</button></div>
+              <!-- <a href="javascript:void();" class="myButton" onclick="mD_update(mentalDataUS)">United States</a>
+              <a href="javascript:void();" class="myButton" onclick="mD_update(mentalDataWorld)">World</a> -->
+              <!-- Create a div where the graph will take place -->
+              <div id="mD_svg">
+                <div id="mD_tooltip" class="hidden">
+                  <p><strong>Share of the total population: <span id="value">100</span>%</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+          </div>
+        </div>
+  
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+          </div>
+        </div>
+  
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+</main><!-- /.container -->
+
+<footer class="blog-footer">
+  <p>GaTech CSE 6242 Data and Visual Analytics Project by <a href="https://github.com">@Team47 (Jian Wang, Yang Lu, Jing Ren, Muzi Bi, Fangxia Tian, Yutong Wu)</a>.</p>
+  <p>
+    <a href="#">Back to top</a>
+  </p>
+</footer>
+</body>
+
+<script type="text/javascript" src="lib/d3.v5.min.js"></script>
+<script type="text/javascript" src="lib/d3-dsv.min.js"></script>
+<script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>
+<script type="text/javascript" src="lib/d3-legend.min.js"></script>
+<script type="text/javascript" src="lib/d3-tip.min.js"></script>
+<script src="js/overview.js"></script>
+</html>
