@@ -36,7 +36,7 @@
       <h1 class="display-4 font-italic">Effects of Marijuana</h1>
     </div>
     <p class="lead my-3">The legalization of marijuana has been studied in various aspects, Marijuana can be beneficial to
-      health and stimulate the brain with euphoric feeling. Nonetheless, it might lead to other illicit drug
+      health and stimulate the brain with the euphoric feeling. Nonetheless, it might lead to other illicit drug
       use. More analyses regarding health risks of marijuana are required. To help stakeholders better
       manage and understand marijuana legalization, it is necessary to illustrate the subject in a more direct
       and accessible manner. Also, detailed evaluations on the impact of marijuana, such as substance use
@@ -50,11 +50,10 @@
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary"> Analysis</strong>
           <h3 class="mb-0">Marijuana Overview</h3>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          <p class="card-text mb-auto">An overview of marijuana's legalization, correlation with mental health, and correlation with other drug use. </p>
+          <a href="index.html" class="stretched-link">Marijuana Information</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
         </div>
       </div>
     </div>
@@ -63,11 +62,10 @@
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Prediction</strong>
           <h3 class="mb-0">Machine Learning</h3>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          <p class="mb-auto">Machine learning models predicting how marijuana influences an individual’s mental health and the use of other substances. </p>
+          <a href="ml.html" class="stretched-link">Machine Learning Prediction</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
         </div>
       </div>
     </div>
@@ -84,14 +82,13 @@
             <h2 class="featurette-heading">Marijuana Legalization History, 1996 - 2020</h2>
             <div>
               <p class="lead">
-              PLACEHOLDER: Every seventh death in the world (13%) was the result of direct smoking in 2017; a further 2% was the result of secondhand smoke. This means 15% – close to 1-in-6 deaths was the result of tobacco.
-              <br>
-              <br>
-              PLACEHOLDER: In the map here we see the share of deaths attributed to direct smoking across the world. In some countries this share was even greater than 13%.
-              <br>
-              <br>
-              PLACEHOLDER: There were several countries in 2017 where more than 1-in-5 deaths resulted from smoking, including China, Denmark, the Netherlands, Greece, Bosnia and Herzegovina, and Greenland.
-              <br>
+                  Background: Since California first legalizing medical marijuana in 1996, most states in the United States have already legalized medical marijuana. 
+                  Moreover, 15 states and the District of Columbia have fully legalized recreational marijuana by 2020.             
+                  <br>
+                  <br>
+                  Here we created a dynamic visualization to demonstrate the process of marijuana legalization in the United States from 1996 to 2020. 
+                  <br>
+                  <br>
               </p>
             </div>
           </div>
@@ -114,12 +111,18 @@
         <div class="row featurette" id="substance-disorder">
           <div class="col-md-5">
             <h2 class="featurette-heading">Prevalence by substance use disorders, 1990 - 2016</h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+              Background: Substance use disorders are very common globally. Around 1-in-7 people suffer from one or more disorders. 
+              The issue is more severe in the United States and several countries in Eastern Europe. 
+              <br>
+              <br>
+              Is there any correlation between substance use and marijuana?
+            </p>
           </div>
           <div class="col-md-5">
               <!-- drug use disorder (dD) -->
               <div id="dD_Viz">
-                <label class="dropDownLabel">Select Year (1990 ~ 2016):</label>
+                <label class="dropDownLabel">Select Year (1990 ~ 2016)</label>
                 <select id="dD_selectYear"></select>
                 <!-- append visualization svg to this div-->
                 <div id="dD_svg"></div>
@@ -132,7 +135,13 @@
         <div class="row featurette" id="mental-disorder">
           <div class="col-md-5">
             <h2 class="featurette-heading">Prevalence by mental disorder (2017)</h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+              Background: Mental disorders, such as anxiety disorders and depression, are common issues globally. 
+              A large number of the population has either anxiety disorders or depression, even both.  
+              <br>
+              <br>
+              Is there any correlation between mental disorders  and marijuana?          
+            </p>
           </div>
           <div class="col-md-7">
             <!-- mental disorder (mD) -->
@@ -156,7 +165,19 @@
         <div class="row featurette" id="correlation-matrix-mental-adult">
           <div class="col-md-5">
             <h2 class="featurette-heading"> Mental Health Correlation Matrix <span class="text-muted">(Adult)</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+            A correlation map shows the relationship between marijuana use and mental health in adults. 
+            The darker the grid is, the stronger the relationship between two attributes is. 
+            <br>
+            <br>
+            The results show relatively weak correlations between different types of mental issues with marijuana (𝑟: 0.06∼0.13).
+            <br>
+            <br>
+            The analyses are based on questionnaires collected by the National Survey on Drug Use and Health. 
+            <br>
+            <br>
+            𝑟: correlation coefficient
+            </p>
           </div>
           <div class="col-md-5">
             <div id="adult-mental-health-legend"></div>
@@ -170,7 +191,13 @@
         <div class="row featurette" id="correlation-matrix-mental-youth">
           <div class="col-md-5">
             <h2 class="featurette-heading"> Mental Health Correlation Matrix <span class="text-muted">(Youth)</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+            A correlation map shows the relationship between marijuana use and mental health in youth. 
+            The darker the grid is, the stronger the relationship between two attributes is. 
+            <br>
+            <br>
+            The analyses are based on questionnaires collected by the National Survey on Drug Use and Health. 
+            </p>
           </div>
           <div class="col-md-5">
             <div id="youth-mental-health-legend"></div>
@@ -183,23 +210,24 @@
         <div class="row featurette" id="correlation-matrix-drug">
           <div class="col-md-5">
             <h2 class="featurette-heading"> Drug Abuse Correlation Matrix</h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">
+                This matrix illustrates the relationship between marijuana use and other drug abuses. 
+                The darker the grid is, the stronger the relationship between two attributes is. 
+                <br>
+                <br>
+                Marijuana has a strong correlation with tobacco, alcohol, cocaine, and hallucinogens (cor-relation coefficient > 0.4). 
+                <br>
+                <br>
+                The analyses are based on questionnaires collected by the National Survey on Drug Use and Health. 
+                <br>
+                <br>
+                𝑟: correlation coefficient
+                <br>
+            </p>
           </div>
           <div class="col-md-5">
             <div id="drug-abuse-legend"></div>
             <div id="drug-abuse-correlation"></div>
-          </div>
-        </div>
-
-        <hr class="featurette-divider">
-        
-        <div class="row featurette">
-          <div class="col-md-5">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          </div>
-          <div class="col-md-5">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
           </div>
         </div>
 

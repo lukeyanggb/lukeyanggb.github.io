@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Jian Wang, Yang Lu, Jing Ren, Muzi Bi, Fangxia Tian, Yutong Wu">
+  <title>CSE 6242 Team 47 Project: Marajuana Study</title>
+
+  <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/overview.css" rel="stylesheet">
+  <link href="css/mj.css" rel="stylesheet">
+  <link href="css/d3-correlation.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .node circle {
+      fill: #fff;
+      /*   stroke: steelblue; */
+      stroke-width: 3px;
+    }
+
+    .node text {
+      font: 12px sans-serif;
+    }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      /*   stroke-width: 2px; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+      <div class="col-md-6 px-0">
+        <h1 class="display-4 font-italic">MarajuanaAnalyzer</h1>
+      </div>
+      <p class="lead my-3">The legalization of marijuana has been studied in various aspects, Marijuana can be
+        beneficial to
+        health and stimulate the brain with euphoric feeling. Nonetheless, it might lead to other illicit drug
+        use. More analyses regarding health risks of marijuana are required. To help stakeholders better
+        manage and understand marijuana legalization, it is necessary to illustrate the subject in a more direct
+        and accessible manner. Also, detailed evaluations on the impact of marijuana, such as substance use
+        and mental health status, are essential.</p>
+      <p class="lead mb-0"><a href="https://www.github.com" class="text-white font-weight-bold">Link to our full
+          report...</a></p>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div
+          class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary"> Analysis</strong>
+            <h3 class="mb-0">Marijuana Overview</h3>
+            <p class="card-text mb-auto">An overview of marijuana's legalization, correlation with mental health, and correlation with other drug use. </p>
+            <a href="index.html" class="stretched-link">Marijuana Information</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div
+          class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">Prediction</strong>
+            <h3 class="mb-0">Machine Learning</h3>
+            <p class="mb-auto">Machine learning models predicting how marijuana influences an individual’s mental health and the use of other substances. </p>
+            <a href="ml.html" class="stretched-link">Machine Learning Prediction</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main role="main" class="container">
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette" id="marijuana-history">
+      <div class="col-md-5">
+        <h2 class="featurette-heading">Machine Learning Predictor</h2>
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Status of Marajuana Use</button>
+            </div>
+            <select class="custom-select" id="inputGroupSelectMarijuana">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Yes</option>
+              <option value="2">No</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Education</button>
+            </div>
+            <select class="custom-select" id="inputGroupSelectEducation">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Fifth grade or less grade completed</option>
+              <option value="2">Sixth grade completed</option>
+              <option value="3">Seventh grade complete</option>
+              <option value="4">Eighth grade completed</option>
+              <option value="5">Ninth grade completed</option>
+              <option value="6">Tenth grade completed</option>
+              <option value="7">Eleventh or Twelfth grade completed, no diploma</option>
+              <option value="8">High school diploma/GED</option>
+              <option value="9">Some college credit, but no degree</option>
+              <option value="10">Associate's degree</option>
+              <option value="11">College graduate or higher</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Employment Status</button>
+            </div>
+            <select class="custom-select" id="inputGroupSelectEmployment">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Employed full time</option>
+              <option value="2">Employed part time</option>
+              <option value="3">Unemployed</option>
+              <option value="5">Not eligible for employment</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Sexual Identity</button>
+            </div>
+            <select class="custom-select" id="inputGroupSexualId">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Straight</option>
+              <option value="2">Lesbian or Gay</option>
+              <option value="3">Bisexual</option>
+              <option value="94">Don't know</option>
+              <option value="97">Refuse to answer</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Health Status</button>
+            </div>
+            <select class="custom-select" id="inputGroupHealth">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Excellent</option>
+              <option value="2">Very Good</option>
+              <option value="3">Good</option>
+              <option value="4">Fair/Poor</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Given Education on Drugs</button>
+            </div>
+            <select class="custom-select" id="inputGroupEduDrugs">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Yes</option>
+              <option value="2">No</option>
+              <option value="94">Don't know</option>
+              <option value="97">Refuse to answer</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Grades at School</button>
+            </div>
+            <select class="custom-select" id="inputGroupGrade">
+              <option value="1" selected>Choose...</option>
+              <option value="1">An "A+", "A" or "A-minus" average</option>
+              <option value="2">A "B+", "B" or "B-minus" average</option>
+              <option value="3">A "C+", "C" or "C-minus" average</option>
+              <option value="4">A "D" or less than a "D" average</option>
+              <option value="5">My school does not give these grades</option>
+              <option value="94">Don't know</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Attacked Someone</button>
+            </div>
+            <select class="custom-select" id="inputGroupAttack">
+              <option value="1" selected>Choose...</option>
+              <option value="1">0 times</option>
+              <option value="2">1 or 2 times</option>
+              <option value="3">3 to 5 times</option>
+              <option value="4">6 to 9 times</option>
+              <option value="5">10 or more times</option>
+              <option value="94">Don't know</option>
+              <option value="97">Refuse to answer</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">Is Religious Belif Important?</button>
+            </div>
+            <select class="custom-select" id="inputGroupReligious">
+              <option value="1" selected>Choose...</option>
+              <option value="1">Strongly Disagree</option>
+              <option value="2">Disagree</option>
+              <option value="3">Agree</option>
+              <option value="4">Strongly Agree</option>
+              <option value="94">Don't know</option>
+              <option value="97">Refuse to answer</option>
+            </select>
+          </div>
+
+          <form>
+            <input class="btn btn-info" type="button" onclick="getPredictionResults()" value="Predict" />
+          </form>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <h2 class="featurette-heading">Prediction Results</h2>
+        <div id="mlResultsInTree"></div>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+    </div>
+    <!-- /END THE FEATURETTES -->
+  </main><!-- /.container -->
+
+  <footer class="blog-footer">
+    <p>GaTech CSE 6242 Data and Visual Analytics Project by <a href="https://github.com">@Team47 (Jian Wang, Yang Lu,
+        Jing Ren, Muzi Bi, Fangxia Tian, Yutong Wu)</a>.</p>
+    <p>
+      <a href="#">Back to top</a>
+    </p>
+  </footer>
+</body>
+
+<script type="text/javascript" src="lib/d3.v5.min.js"></script>
+<script type="text/javascript" src="lib/d3-dsv.min.js"></script>
+<script type="text/javascript" src="lib/d3-geo-projection.v2.min.js"></script>
+<script type="text/javascript" src="lib/d3-legend.min.js"></script>
+<script type="text/javascript" src="lib/d3-tip.min.js"></script>
+<script src="https://unpkg.com/jeezy@1.12.11/lib/jeezy.min.js"></script>
+<script src="https://unpkg.com/data2grid@1.0.0/build/data2grid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.5/chroma.min.js"></script>
+<script src="js/ml.js"></script>
+
+</html>
