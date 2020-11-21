@@ -41,7 +41,7 @@ unzip submitted team47final.zip
 3. EXECUTION:
 ----------------------------------------------------------------------------------
 LOCAL EXECUTION: 
-1) change directory: "cd <path to a marijuana project under team47final/CODE folder>"
+1) change directory: "cd <path to the <marijuana> project folder under team47final/CODE folder>"
 2) local execution: "python -m http.server 8000"
 
 HOSTED STATIC WEB PAGE:
