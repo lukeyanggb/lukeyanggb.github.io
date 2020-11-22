@@ -33,7 +33,7 @@ AWS lambda repository (https://github.gatech.edu/ftian39/marijuana_effects_team_
 
 2. INSTALLATION:
 ----------------------------------------------------------------------------------
-unzip submitted team47final.zip
+unzip submitted team047final.zip
 
 (or "git clone https://github.gatech.edu/ylu635/marijuana.git" for web app only)
 ----------------------------------------------------------------------------------
