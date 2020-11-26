@@ -122,7 +122,7 @@ function drawCollapsibleTree(value) {
 //console.log(modelsList)
 //console.log(resultsList)
   var treeData = {
-    "name": "Prediciton",
+    "name": "Predicition",
     "value": 75,
     "type": "black",
     "level": "red",
